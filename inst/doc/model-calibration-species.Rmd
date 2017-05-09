@@ -1,0 +1,65 @@
+---
+title: "model-calibration-species"
+author: "Alexander Keth"
+date: '`r Sys.Date()`'
+output: 
+  pdf_document:
+    toc: true
+    number_sections: true
+    fig_width: 10
+    fig_height: 13
+    fig_caption: true
+vignette: >
+  %\VignetteIndexEntry{model-calibration-species}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+\newpage
+
+NOTE: This vigentte is optimised for longer simulation runs. Therefore the output is not as pleasant
+due to the fact that the dummy setas file have a simulation time of 5 years.
+
+In order to use this vignette make sure to render `model-preprocess.Rmd` first. Either save the resulting
+list of dataframes as shown in `data-raw/data-vignette-model-preprocess.R` or render both vignettes
+`model-preprocess.Rmd` and `model-calibration-species.Rmd` in the same R-instance. Of course,  you can also use 
+a personalised version of `mode-preprocess.Rmd`. Please make sure to add all resulting dataframes
+to the list of dataframes at the end of the preprocess vignette and change `model-calibration-species.Rmd` accordingly.
+
+```{r}
+library("atlantistools")
+library("gridExtra")
+
+# You should be able to build the vignette either by clicking on "Knit PDF" in RStudio or with
+# rmarkdown::render("model-calibration-species.Rmd")
+```
+
+## User Input
+This section is used to read in the SETAS dummy files. Please change this accordingly.
+
+```{r}
+result <- preprocess
+species <- c("Shallow piscivorous fish", "Small planktivorous fish")
+```
+
+\newpage
+
+# Overview species 
+
+```{r, echo=FALSE, results = 'asis'}
+plots <- lapply(species, plot_species, data_pre = result)
+for (i in seq_along(plots)) {
+  cat(paste0("## ", species[i]), sep = "\n")
+  gridExtra::grid.arrange(plots[[i]])
+  cat("\n\n")
+}
+```
+
+
+
+
+
+
+
+
+
