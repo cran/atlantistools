@@ -10,7 +10,7 @@
 #'
 #' @family load functions
 #' @export
-#' @return A \code{data.frame} in long format with the following coumn names:
+#' @return A \code{data.frame} in long format with the following column names:
 #'   time, pred, habitat, prey and atoutput (i.e., variable).
 #'
 #' @examples
@@ -69,7 +69,7 @@ load_dietcheck <- function(dietcheck, fgs, prm_run, convert_names = FALSE, repor
       print_diet <- print_diet %>%
         dplyr::mutate_(out = ~out / length(unique(diet$Time)) * 100) %>%
         #BJS predator -> colnames(diet)[2]
-        tidyr::spread_(key_col = colnames(diet)[2], value_col = "out") %>%
+        tidyr::spread_(data = ., key_col = colnames(diet)[2], value_col = "out") %>%
         as.data.frame()
 
 
