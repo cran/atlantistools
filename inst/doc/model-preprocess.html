@@ -12,7 +12,7 @@
 
 <meta name="author" content="Alexander Keth" />
 
-<meta name="date" content="2017-05-18" />
+<meta name="date" content="2017-08-16" />
 
 <title>model-preprocess</title>
 
@@ -70,7 +70,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <h1 class="title toc-ignore">model-preprocess</h1>
 <h4 class="author"><em>Alexander Keth</em></h4>
-<h4 class="date"><em>2017-05-18</em></h4>
+<h4 class="date"><em>2017-08-16</em></h4>
 
 
 
@@ -207,9 +207,9 @@ growth_age  &lt;-<span class="st"> </span><span class="kw">agg_data</span>(<span
 bio_cons &lt;-<span class="st"> </span><span class="kw">calculate_consumed_biomass</span>(<span class="dt">eat =</span> dfs_prod[[<span class="dv">1</span>]], <span class="dt">grazing =</span> dfs_prod[[<span class="dv">2</span>]], <span class="dt">dm =</span> df_dm,
                                        <span class="dt">vol =</span> vol, <span class="dt">bio_conv =</span> bio_conv) %&gt;%
 <span class="st">  </span><span class="kw">agg_data</span>(<span class="dt">groups =</span> <span class="kw">c</span>(<span class="st">&quot;pred&quot;</span>, <span class="st">&quot;agecl&quot;</span>, <span class="st">&quot;time&quot;</span>, <span class="st">&quot;prey&quot;</span>), <span class="dt">fun =</span> sum)</code></pre></div>
-<pre><code>## 93% matching timesteps between PROD.nc and DietCheck.txt</code></pre>
-<pre><code>## 0.28% data is lost due to missing diet data despite available eat data.</code></pre>
-<pre><code>## 3.98% data is lost due to missing eat data despite available diet data.</code></pre>
+<pre><code>## 50% matching timesteps between PROD.nc and DietCheck.txt</code></pre>
+<pre><code>## 0.21% data is lost due to missing diet data despite available eat data.</code></pre>
+<pre><code>## 21.97% data is lost due to missing eat data despite available diet data.</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Calculate spatial overlap</span>
 sp_overlap &lt;-<span class="st"> </span><span class="kw">calculate_spatial_overlap</span>(<span class="dt">biomass_spatial =</span> bio_sp, <span class="dt">dietmatrix =</span> dietmatrix, <span class="dt">agemat =</span> df_agemat)
 

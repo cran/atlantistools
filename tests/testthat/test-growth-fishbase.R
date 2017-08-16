@@ -2,8 +2,8 @@ context("test extraction of data from fishbase.")
 
 df1 <- get_growth_fishbase("Scyliorhinus canicula")
 
-test_that("test extraction for sprat", {
-  expect_equal(dim(df1), c(4, 17))
+test_that("test extraction for Small-spotted catshark", {
+  expect_equal(dim(df1), c(4, 16))
   expect_equivalent(df1$linf[3], 87.4)
   expect_equivalent(df1$k[2], 0.15)
   expect_equivalent(df1$locality[1], "Central Adriatic, 100-200 m depth")
@@ -18,8 +18,8 @@ test_that("test extraction for sprat", {
 #   expect_equivalent(df2$locality[4], "Monaci lagoon")
 # })
 
-
-df3 <- get_ref_fishbase(df1)
+refs <- unique(c(df1$main_ref, df1$data_ref))
+df3 <- get_ref_fishbase(ref_id = na.omit(refs))
 
 test_that("test extraction of references for sprat", {
   expect_true(stringr::str_detect(df3$ref[df3$ref_id == 1231], "Zupanovic, S., 1961. Contribution"))
@@ -52,7 +52,7 @@ df <- suppressWarnings(get_growth_fishbase(c("Alosa agone", "Scyliorhinus canicu
 
 test_that("error and NA handling", {
   expect_error(get_growth_fishbase("Alosa agone"), "None of the species have information about growth.")
-  expect_equal(sum(is.na(df[df$species == "Alosa agone", ])), 16)
+  expect_equal(sum(is.na(df[df$species == "Alosa agone", ])), 15)
   expect_equal(nrow(is.na(df[df$species == "Alosa agone", ])), 1)
 })
 
